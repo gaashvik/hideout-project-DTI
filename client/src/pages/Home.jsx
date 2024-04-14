@@ -148,7 +148,7 @@ export default function Home() {
             </h1>
 
             <div className=''>
-            <Link to={"/places"}><button className="flex text-sm rounded-full items-center border-2 border-primary px-4 py-1 font-medium text-primary transition-all hover:bg-primary hover:text-white disabled:bg-gray-300 ">
+            <Link to={"/places"}><button className="flex text-sm rounded-full items-center border-2 border-primary px-6 py-3 font-medium text-primary transition-all hover:bg-primary hover:text-white disabled:bg-gray-300 ">
                 <span>More</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -158,6 +158,7 @@ export default function Home() {
 
         <div className='grid  lg:grid-cols-3 gap-10 pt-10'>
         {place.slice(0,6).map((item, index) => (
+          <Link to={`/destination/${item.id}`}>
         <div
             key={index}
             className='border shadow-lg rounded-lg hover:scale-105 duration-300'
@@ -179,6 +180,7 @@ export default function Home() {
             <p className='font'>{item.description}</p>
             </div>
         </div>
+        </Link>
         ))}
     </div>
 </div>
@@ -193,7 +195,7 @@ export default function Home() {
         </h1>
 
         <div className=''>
-            <Link to={"/shared"}><button className="flex text-sm rounded-full items-center border-2 border-primary px-4 py-1 font-medium text-primary transition-all hover:bg-primary hover:text-white disabled:bg-gray-300 ">
+            <Link to={"/shared"}><button className="flex text-sm rounded-full items-center border-2 border-primary px-6 py-3 font-medium text-primary transition-all hover:bg-primary hover:text-white disabled:bg-gray-300 ">
                 <span>More</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -203,6 +205,7 @@ export default function Home() {
 
         <div className='grid  lg:grid-cols-3 gap-10 pt-10'>
             {place.slice(0,5).map((item, index) => (
+              <Link to={`/shared/${item.id}`}>
             <div
                 key={index}
                 className='border shadow-lg rounded-lg hover:scale-105 duration-300'
@@ -224,10 +227,10 @@ export default function Home() {
                 <p className='font'>{item.description}</p>
                 </div>
             </div>
+            </Link>
             ))}
         </div>
     </div>
-    <Footer/>
 </>
   );
 }

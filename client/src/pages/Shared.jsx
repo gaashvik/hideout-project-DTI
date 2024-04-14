@@ -1,9 +1,28 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { data } from '../data/data.js';
 
 const Shared = () => {
 
-    const [place] = useState(data);
+    const [place,setPlace] = useState(data);
+
+      //   Filter Type burgers/pizza/etc
+  const filterType = (category) => {
+    setPlace(
+      data.filter((item) => {
+        return item.category === category;
+      })
+    );
+  };
+
+  //   Filter by price
+  const filterPrice = (price) => {
+    setPlace(
+      data.filter((item) => {
+        return item.price === price;
+      })
+    );
+  };
 
   return (
     
@@ -12,8 +31,83 @@ const Shared = () => {
       <h1 className='text-primary font-bold text-4xl text-center'>
         Top Shared Places/Stories
       </h1>
+
+
+            {/* Filter Row */}
+            <div className='flex flex-col lg:flex-row justify-between'>
+        {/* Fliter Type */}
+        <div>
+          <p className='font-bold text-gray-700'>Filter Type</p>
+          <div className='flex justfiy-between flex-wrap'>
+            <button
+              onClick={() => setPlace(data)}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              All
+            </button>
+            <button
+              onClick={() => filterType('Nature')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              Nature
+            </button>
+            <button
+              onClick={() => filterType('Beaches')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              Beaches
+            </button>
+            <button
+              onClick={() => filterType('Tempels')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              Temples
+            </button>
+            <button
+              onClick={() => filterType('Cities')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              Cities
+            </button>
+          </div>
+        </div>
+
+        {/* Filter Price */}
+        <div>
+          <p className='font-bold text-gray-700'>Ratings</p>
+          <div className='flex justify-between max-w-[390px] w-full'>
+            <button
+              onClick={() => filterPrice('*')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              *
+            </button>
+            <button
+              onClick={() => filterPrice('**')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              **
+            </button>
+            <button
+              onClick={() => filterPrice('***')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              ***
+            </button>
+            <button
+              onClick={() => filterPrice('****')}
+              className='m-1 border-primary text-primary hover:bg-primary hover:text-white'
+            >
+              ****
+            </button>
+          </div>
+        </div>
+      </div>
+
+
         <div className='grid  lg:grid-cols-3 gap-10 pt-10'>
             {place.map((item, index) => (
+              <Link to={`/shared/${item.id}`}>
             <div
                 key={index}
                 className='border shadow-lg rounded-lg hover:scale-105 duration-300'
@@ -35,6 +129,7 @@ const Shared = () => {
                 <p className='font'>{item.description}</p>
                 </div>
             </div>
+            </Link>
             ))}
         </div>
         {/* <button className='border-white bg-white text-black mx-2 absolute bottom-4'>Explore</button> */}

@@ -16,7 +16,7 @@ To run the frontend client:
 3. Start the development server: `npm run dev`
 
 To run the backend API:
-
+~
 1. Install dependencies: `npm install`
 2. Start the development server: `npm run dev`
 
